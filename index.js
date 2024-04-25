@@ -5,6 +5,7 @@ const locale1 = "en-US";
 const locale2 = "pt-BR";
 const fileName = "state_of_html_2023.yml";
 const fileNameWithoutExtension = fileName.replace(/\.yml$/, "");
+const outputPath = `./docs/${locale2}/missing-keys-${fileNameWithoutExtension}.md`;
 
 function verifyYAMLFile(fileName) {
   const results = [];
@@ -37,11 +38,7 @@ const resultString =
   `key not included in ${locale2}:\n\n` + itemsNotIncluded.join("\n");
 
 // Write the result to a file named output.txt
-writeFile(
-  `./docs/${locale2}/missing-keys-${fileNameWithoutExtension}.md`,
-  resultString,
-  (err) => {
-    if (err) throw err;
-    console.log("Result has been saved to output.txt");
-  }
-);
+writeFile(outputPath, resultString, (err) => {
+  if (err) throw err;
+  console.log(`Result has been saved to ${outputPath}`);
+});
